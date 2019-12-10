@@ -1,11 +1,23 @@
+// 1001 没有token
+// 1002 错误token
+// 1003 token过期
+const TOKEN = 'token'
 App({
   globalData: {
     token: ''
   },
   onLaunch: function () {
+    // 先判断是否有token
+    const token = wx.getStorageSync(TOKEN)
+    if (token && token.length !== 0) { // 已经有token就判断是否过期
+      this.check_toekn(token)
+    } else {
+      this.login()
+    }
+  },
+  login() {
     wx.login({
       success: (res) => {
-        console.log(res)
         const code = res.code
         wx.request({
           url: 'http://123.207.32.32:3000/login',
@@ -13,13 +25,33 @@ App({
           data: {
             code
           },
-          success: (res)=> {
+          success: (res) => {
             console.log(res)
             const token = res.data.token
             this.globalData.token = token
-            wx.setStorageSync('token', token)
+            wx.setStorageSync(TOKEN, token)
           }
         })
+      }
+    })
+  },
+  check_toekn(token) {
+    wx.request({
+      url: 'http://123.207.32.32:3000/auth',
+      method: 'post',
+      header: {
+        token
+      },
+      success: (res)=> {
+        console.log(res)
+        if(!res.data.errCode) {
+          this.globalData.token = token
+        } else {
+          this.login()
+        }
+      },
+      fail: (err)=> {
+        console.log(err)
       }
     })
   }
