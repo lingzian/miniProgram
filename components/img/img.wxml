@@ -1,0 +1,2 @@
+<image wx:if='{{!finishLoadFlag}}' src='{{defaultImage}}'class='image-class'/>
+<image mode='{{mode}}' class="{{!finishLoadFlag? 'hide': ''}}"  src='{{src}}' bindload='finishLoad' />

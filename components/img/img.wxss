@@ -1,0 +1,10 @@
+/* components/img/img.wxss */
+image{
+  width: 100%;
+  height: 100%;
+}
+.hide {
+  width: 0rpx !important;
+  height: 0rpx !important;
+  opacity: 0 !important;
+}

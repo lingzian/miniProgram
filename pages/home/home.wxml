@@ -1,4 +1,20 @@
 <view class="home">
-  <view >
+  <view hidden='{{!showTabControl}}'>
+    <w-tab-control class='tab-control-temp' 
+                 titles="{{titles}}" 
+                 bind:tabclick="tabClick"/>
   </view>
+  <scroll-view class="content"
+                scroll-y
+                bindscrolltolower="loadMore"
+                scroll-width-animation="true"
+                scroll-top="{{topPosition}}"
+                bindscroll="scrollPosition">
+    <w-swiper images="{{banners}}"/>
+    <w-recommend recommends="{{recommends}}" bind:imageLoad="onImageLoad"></w-recommend>
+    <w-feature />
+    <w-tab-control class="tab-control" titles="{{titles}}" bind:tabclick="tabClick" />
+    <w-goods goodslist="{{goods[currentType].list}}" left="{{goods[currentType].left}}" right="{{goods[currentType].right}}" />
+    <w-back-top bindtap="onBackTop" wx:if="{{showBackTop}}"/>
+  </scroll-view>
 </view>

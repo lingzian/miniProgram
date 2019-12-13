@@ -1,0 +1,20 @@
+/* components/w-goods/w-goods.wxss */
+.goods {
+  display: flex;
+  padding: 8rpx;
+  width: 100%;
+}
+.goods .column {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.goods > .goods-item {
+  position: relative;
+}
+
+.goods > .column .goods-item {
+  width: 98%;
+  /* margin-top: 20rpx; */
+  margin: 0 auto;
+}

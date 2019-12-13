@@ -41,5 +41,8 @@
         "selectedIconPath": "/assets/images/tabbar/profile_active.png"
       }
     ]
+  },
+  "usingComponents": {
+    "img": "/components/img/img"
   }
 }

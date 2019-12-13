@@ -4,11 +4,11 @@ import {
 } from './config.js'
 
 const request = (options) => {
-  WebGLTexture.showLoading({
+  wx.showLoading({
     title: '数据加载中...'
   })
   return new Promise((resolve,reject)=> {
-    WebGLTexture.request({
+    wx.request({
       url: baseURL + options.url,
       timeout,
       data: options.data,
@@ -22,3 +22,5 @@ const request = (options) => {
     })
   })
 }
+
+export default request

@@ -1,0 +1,15 @@
+<!--components/w-goods/w-goods.wxml-->
+<view class='goods'>
+  <view class="left column">
+    <block wx:for="{{left}}" wx:key="index">
+      <w-goods-item class="goods-item" goodsitem="{{item}}"/>
+    </block>
+  </view>
+  <view class="right column">
+    <block wx:for="{{right}}" wx:key="index">
+      <w-goods-item class="goods-item" goodsitem="{{item}}"/>
+    </block>
+  </view>
+  
+</view>
+
