@@ -21,6 +21,16 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    
+    previewImage(e) {
+      const current = 'http:' + e.target.dataset.src
+      console.log(current)
+      console.log(this.data.images)
+      let images = this.data.images.map((ele)=>{return 'http:' + ele})
+      console.log(images)
+      wx.previewImage({
+        current,
+        urls: images
+      })
+    }
   }
 })

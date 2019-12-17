@@ -25,14 +25,22 @@ Component({
    */
   data: {
   },
-  observers: {
-    'goodslist': (val)=> {
-      console.log(val)
-    }
-  },
   /**
    * 组件的方法列表
    */
   methods: {
+    async getReat() {
+      return await new Promise((resolve,reject) => {
+        let query = wx.createSelectorQuery().in(this);
+        query.select('.pull-left').boundingClientRect();
+        query.select('.pull-right').boundingClientRect();
+        query.exec((res) => {
+          console.log(res)
+          let leftHeight = res[0].height; //获取左边列表的高度
+          let rightHeight = res[1].height; //获取右边列表的高度
+          resolve({leftHeight,rightHeight}) 
+        });
+      })
+    }
   }
 })

@@ -29,15 +29,15 @@ Page({
     showTabControl: false,
     loading: false
   },
-  onLoad: function (options) {
+  onReady: function (options) {
     this._getData()
   },
   // 获取全部的数据
   _getData() {
     this._getMultiData(); // 分页上面的数据
     this._getProductData(POP);
-    // this._getProductData(NEW);
-    // this._getProductData(SELL);
+    this._getProductData(NEW);
+    this._getProductData(SELL);
   },
   // 获取滚动参数
   scrollPosition(e) {
@@ -113,21 +113,9 @@ Page({
       const list = res.data.list;
       const leftList = list.slice(0,Math.ceil(list.length/2))
       const rightList = list.slice(Math.ceil(list.length/2))
-      // const leftList = []
-      // const rightList = []
-      // const goods = this.data.goods;
-      // console.log('1')
-      // for (const item of list) {
-      //   console.log('sss')
-      //   leftHeight <= rightHeight ? goods[type].left.push(item) : goods[type].right.push(item); //判断两边高度，来觉得添加到那边
-      //   await this.getBoxHeight(goods);
-      //  }
-
       // 2.将数据临时获取
       const goods = this.data.goods;
       goods[type].list.push(...list)
-
-
       goods[type].left.push(...leftList)
       goods[type].right.push(...rightList)
       goods[type].page += 1;
@@ -139,6 +127,27 @@ Page({
       this.data.loading = false
     })
   },
+  // _getProductData(type) {
+  //   // 1.获取数据对应的页码
+  //   const page = this.data.goods[type].page;
+  //   this.data.loading = true
+  //   // 2.请求数据
+  //   getProduct(type, page).then(async res => {
+  //     // 1.取出数据
+  //     const list = res.data.list;
+  //     const leftList = []
+  //     const rightList = []
+  //     const goods = this.data.goods;
+  //     for (const item of list) {
+  //       leftHeight <= rightHeight ? goods[type].left.push(item) : goods[type].right.push(item); //判断两边高度，来觉得添加到那边
+  //       let reat = await this.getBoxHeight(goods);
+  //       leftHeight = reat.leftHeight
+  //       rightHeight = reat.rightHeight
+  //      }
+
+  //     this.data.loading = false
+  //   })
+  // },
   // 加载更多数据 page
   onReachBottom: function() {
     // this._getProductData(this.data.currentType)
@@ -161,18 +170,11 @@ Page({
     // })
   },
   getBoxHeight(goods) { //获取左右两边高度
-    let query = wx.createSelectorQuery();
-    return new Promise((resolve, reject) => {
-     this.setData({ goods }, () => {
-      query.select('.pull-left').boundingClientRect();
-      query.select('.pull-right').boundingClientRect();
-      query.exec((res) => {
-        console.log(res)
-       leftHeight = res[0].height; //获取左边列表的高度
-       rightHeight = res[1].height; //获取右边列表的高度
-       resolve();
-      });
-     });
+    let res = null
+     this.setData({goods},()=> {
+       console.log('sss')
+      
     })
+    return res = this.selectComponent('.goodsComponents').getReat(goods)
    }
 })

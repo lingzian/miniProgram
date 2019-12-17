@@ -4,10 +4,12 @@
   text-align: center;
   color: #333;
   padding-bottom: 20rpx;
+  width: 100%;
 }
 
 .image {
   width: 100%;
+  display: block;
   border-radius: 10rpx;
 }
 

@@ -29,9 +29,9 @@ Component({
       const iid = this.data.goodsitem.iid;
       console.log(this.data)
       // 2.跳转到对应的路径
-      // wx.navigateTo({
-      //   url: '/pages/detail/detail?iid=' + iid,
-      // })
+      wx.navigateTo({
+        url: '/pages/detail/detail?iid=' + iid,
+      })
     }
   }
 })

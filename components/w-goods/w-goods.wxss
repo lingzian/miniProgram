@@ -1,20 +1,29 @@
 /* components/w-goods/w-goods.wxss */
 .goods {
-  display: flex;
-  padding: 8rpx;
+  /* display: flex; */
   width: 100%;
+  
 }
+.goods:after {  
+  content: "."; 
+  display: block; 
+  height: 0; 
+  clear: both; 
+  visibility: hidden;  
+}  
 .goods .column {
   width: 50%;
-  display: flex;
-  flex-direction: column;
+  float: left;
+  /* display: flex;
+  flex-direction: column; */
 }
 .goods > .goods-item {
   position: relative;
 }
 
 .goods > .column .goods-item {
-  width: 98%;
+  width: 95%;
   /* margin-top: 20rpx; */
   margin: 0 auto;
+  display: block;
 }
